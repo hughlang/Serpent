@@ -32,6 +32,7 @@ extension Date: StringInitializable {
 	static public var customDateFormats: [String] = []
 
     public static func fromString<T>(_ string: String) -> T? {
+        internalDateFormatter.timeZone = TimeZone(abbreviation: "GMT")
         for format in allowedDateFormats + customDateFormats {
             internalDateFormatter.dateFormat = format
             if let date = internalDateFormatter.date(from: string) as? T {
